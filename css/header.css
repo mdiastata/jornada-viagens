@@ -1,11 +1,9 @@
-
-
 header {
   background-color: var(--background-tertiary-color);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   padding: 38px 48px;
   position: relative;
 }
@@ -26,83 +24,119 @@ header {
 
 .navigation-menu {
   margin-top: 24px;
+  position: relative; 
+  z-index: 2; 
 }
 
-input[type="checkbox"]:checked ~ nav {
-  display: block;
+.navigation-menu label {
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 10px;
+  z-index: 3; /* Garante que o label fique na frente do menu */
+}
+
+.navigation-menu nav {
+  display: none;
   position: absolute;
   top: 100%;
   left: 0;
   width: 100%;
   background-color: var(--background-tertiary-color);
+  z-index: 1;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
-nav {
-  display: none;
+.navigation-menu input[type="checkbox"]:checked ~ nav {
+  display: block;
 }
 
 .list-links {
   list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
 }
 
 .list-links li {
   margin: 16px 0;
+  text-align: center;
 }
+
 .list-links li a {
   color: var(--text-secondary-color);
   text-decoration: none;
   font-weight: var(--menu-text-weight);
   font-size: 24px;
+  display: block; 
+  padding: 10px; 
+  box-sizing: border-box;
 }
+
 .list-links li a.active {
   text-decoration: underline;
 }
 
-
 @media screen and (min-width: 768px) {
   .navigation-menu {
     margin-top: 0;
-    width: 467px;
+    width: auto; /* Removido o width fixo */
   }
+
   .navigation-menu label {
+    display: none;
+  }
+
+  .navigation-menu input[type="checkbox"] {
     display: none;
   }
 
   .navigation-menu nav {
     display: block;
+    position: static;
+    width: auto;
+    background-color: transparent;
   }
-  .navigation-menu ul {
+
+  .list-links {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start; /* Alinha os links à esquerda */
     align-items: center;
-    padding: 0;
   }
-  .navigation-menu li {
-    margin: 0;
+
+  .list-links li {
+    margin: 0 16px; /* Adiciona margem horizontal entre os links */
   }
 }
 
 @media screen and (min-width: 1024px) {
-  .main-header {
+  header {
     padding: 38px 120px;
   }
+
   .logo {
     width: 260px;
     height: 64px;
   }
+
   .img-desktop {
     display: block;
   }
+
   .img-mobile {
     display: none;
   }
+
   .navigation-menu a:hover {
     color: var(--primary-color);
   }
 }
 
 @media screen and (min-width: 1920px) {
-  .main-header {
+  header {
     padding: 38px 160px;
   }
 }
